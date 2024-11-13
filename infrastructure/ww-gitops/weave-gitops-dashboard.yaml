@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: weave-gitops
+  name: ww-gitops
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: weave-gitops-reconciler
-  namespace: weave-gitops
+  namespace: ww-gitops
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -73,7 +73,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: weave-gitops-reconciler
-  namespace: weave-gitops
+  namespace: ww-gitops
 rules:
   # last release revision, "cluster-user-auth"
   - apiGroups: [""]
@@ -115,13 +115,13 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: weave-gitops-reconciler
-    namespace: weave-gitops
+    namespace: ww-gitops
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: weave-gitops-reconciler
-  namespace: weave-gitops
+  namespace: ww-gitops
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -129,7 +129,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: weave-gitops-reconciler
-    namespace: weave-gitops
+    namespace: ww-gitops
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
@@ -143,7 +143,7 @@ metadata:
     app.kubernetes.io/name: weave-gitops-dashboard
     app.kubernetes.io/part-of: weave-gitops
   name: weave-gitops
-  namespace: weave-gitops
+  namespace: ww-gitops
 spec:
   interval: 1h0m0s
   type: oci
@@ -156,7 +156,7 @@ metadata:
     metadata.weave.works/description: This is the Weave GitOps Dashboard.  It provides
       a simple way to get insights into your GitOps workloads.
   name: weave-gitops
-  namespace: weave-gitops
+  namespace: ww-gitops
 spec:
   serviceAccountName: weave-gitops-reconciler
   chart:
