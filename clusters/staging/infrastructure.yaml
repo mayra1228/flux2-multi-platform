@@ -4,12 +4,10 @@ metadata:
   name: ww-gitops
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 1m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
   path: ./infrastructure/ww-gitops
   prune: true
-  wait: true
-  timeout: 10m
