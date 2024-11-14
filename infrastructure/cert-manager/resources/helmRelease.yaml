@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cert-manager
+spec:
+  chartRef:
+    kind: cert-manager
+    name: cert-manager
+    version: v1.16.1
+    namespace: kube-system
+  interval: 10m
+  valuesFrom:
+    - kind: ConfigMap
+      name: podinfo-values
