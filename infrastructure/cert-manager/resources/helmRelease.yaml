@@ -3,11 +3,14 @@ kind: HelmRelease
 metadata:
   name: cert-manager
 spec:
-  chartRef:
-    kind: cert-manager
-    name: cert-manager
-    version: v1.16.1
-    namespace: kube-system
+  chart:
+    spec:
+      chart: cert-manager
+      version: v1.16.1
+      namespace: kube-system
+      sourceRef:
+        kind: HelmRepository
+        name: cert-manager
   interval: 10m
   valuesFrom:
     - kind: ConfigMap
